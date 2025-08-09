@@ -41,6 +41,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Propose a Question | Testsolve App</title>
+</svelte:head>
+
 <article>
 	<header>
 		<h1>Propose a New Question</h1>

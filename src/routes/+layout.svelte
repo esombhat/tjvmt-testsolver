@@ -5,6 +5,10 @@
 	import { page } from '$app/stores';
 </script>
 
+<svelte:head>
+	<title>Testsolve App</title>
+</svelte:head>
+
 <header class="container-fluid">
 	<div class="container header-content">
 		<a href="/" class="site-title">
