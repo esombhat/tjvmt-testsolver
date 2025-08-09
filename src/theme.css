@@ -1,0 +1,42 @@
+/* /src/theme.css */
+
+/* We target the dark theme to override its variables */
+[data-theme="dark"] {
+  /* Color Palette */
+  --primary: #ff6687; /* Main accent for buttons, links */
+  --primary-hover: #ffffff; /* Make links white on hover */
+  --primary-focus: #ff6687bf; /* Transparent accent for focus rings */
+  --primary-inverse: #0a1d2f; /* Text color on top of buttons */
+
+  /* Background & Text */
+  --background-color: #0a1d2f;
+  --color: #ffffff; /* Main text color */
+  --h1-color: #ffffff;
+  --h2-color: #ffffff;
+  --h3-color: #ffffff;
+  --h4-color: #ffffff;
+  --h5-color: #ffffff;
+  --h6-color: #ffffff;
+  --muted-color: #a0aec0; /* Lighter secondary text */
+  --muted-border-color: #2d3748; /* Borders for inputs, cards */
+
+  /* Form Elements */
+  --form-element-background-color: #1a202c;
+  --form-element-border-color: #2d3748;
+  --form-element-focus-color: var(--primary-focus);
+
+  /* Card Elements */
+  --card-background-color: #1a202c;
+  --card-border-color: #2d3748;
+  --card-box-shadow: 0 0.05rem 0.2rem rgba(255, 102, 135, 0.1),
+    0 0.05rem 0.1rem rgba(255, 102, 135, 0.1);
+}
+
+/* Specific override for button text to be dark */
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+.contrast {
+  --color: #0a1d2f;
+}

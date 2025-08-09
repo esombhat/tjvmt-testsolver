@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+        
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  // Link to other models
+  questions     Question[]
+  answerAttempts AnswerAttempt[]
+  ratings       Rating[]
+  chatMessages  ChatMessage[]
+}
+
+
+model Question {
+  id            String    @id @default(cuid())
+  createdAt     DateTime  @default(now())
+  authorId      String
+  author        User      @relation(fields: [authorId], references: [id])
+  
+  title         String    @default("Untitled question")// NEW: The required title for the question
+  body          String    // The question text, can contain LaTeX
+  answer        String    // The correct answer
+  solution      String?   // NEW: The optional solution, can also contain LaTeX
+  timerDuration Int       @default(900) // Duration in seconds (e.g., 15 mins)
+
+  // Relations
+  tags          Tag[]
+  answerAttempts AnswerAttempt[]
+  ratings       Rating[]
+  chatMessages  ChatMessage[]
+}
+
+model Tag {
+  id            String    @id @default(cuid())
+  name          String    @unique
+  questions     Question[]
+}
+
+// Tracks each time a user tries to answer a question
+model AnswerAttempt {
+  id            String    @id @default(cuid())
+  createdAt     DateTime  @default(now())
+  isCorrect     Boolean
+  
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
+  
+  questionId    String
+  question      Question  @relation(fields: [questionId], references: [id])
+
+  @@unique([userId, questionId]) // A user can only have one final attempt status per question
+}
+
+model Rating {
+  id            String    @id @default(cuid())
+  value         Int       // Rating from 1 to 5
+  
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
+  
+  questionId    String
+  question      Question  @relation(fields: [questionId], references: [id])
+
+  @@unique([userId, questionId]) // A user can only rate a question once
+}
+
+model ChatMessage {
+  id            String    @id @default(cuid())
+  createdAt     DateTime  @default(now())
+  content       String
+
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
+  
+  questionId    String
+  question      Question  @relation(fields: [questionId], references: [id])
+}

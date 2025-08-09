@@ -1,0 +1,18 @@
+/* /src/app.css (Corrected Version for Pico.css) */
+
+/* This file is for global styles that Pico.css and your theme.css don't cover. */
+
+/* 1. Center all titles */
+h1,
+h2,
+h3 {
+  text-align: center;
+}
+
+/* 2. Add consistent spacing between components */
+section,
+article,
+header,
+hr {
+  margin-bottom: 2.5rem;
+}
