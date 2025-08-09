@@ -14,7 +14,7 @@
 		<a href="/" class="site-title">
 			<hgroup>
 				<h1>Testsolve</h1>
-				<h2>Math Team App</h2>
+				<h2>TJ Varsity Math Team</h2>
 			</hgroup>
 		</a>
 
